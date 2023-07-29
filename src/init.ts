@@ -2,6 +2,7 @@ import { Expo } from 'expo-server-sdk'
 import { cert, initializeApp } from 'firebase-admin/app'
 import * as fs from 'fs/promises'
 import keytar from 'keytar'
+import 'dotenv/config'
 
 async function getConfigParam(name: string) {
   let value: any = process.env[name];

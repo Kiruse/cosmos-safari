@@ -3,7 +3,6 @@ import safari from './safari.js'
 import { getPropsTask } from './safari/props.js'
 import { daily } from './scheduler.js'
 import init from './init.js'
-import 'dotenv/config.js'
 
 safari.addReporter(new ExpoPushReporter(init.expo));
 
