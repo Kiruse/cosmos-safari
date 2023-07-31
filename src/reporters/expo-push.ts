@@ -35,7 +35,7 @@ export class ExpoPushReporter implements Reporter {
 /** Broadcast the same message to all users */
 export async function broadcast(expo: Expo, messages: Omit<ExpoPushMessage, 'to'>[]) {
   const tokens = await getPushTokens();
-  const msgs: ExpoPushMessage[] = tokens.flatMap(token => messages.map(msg => ({ ...msg, to: token })));
+  const msgs: ExpoPushMessage[] = tokens.filter(Boolean).flatMap(token => messages.map(msg => ({ ...msg, to: token })));
 
   const chunks = expo.chunkPushNotifications(msgs);
   console.info(`[${timestamp()}] We have ${chunks.length} ExpoPushMessage chunks`);

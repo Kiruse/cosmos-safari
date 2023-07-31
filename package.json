@@ -7,6 +7,9 @@
   "repository": "https://github.com/Kiruse/cosmos-safari",
   "author": "Kiruse",
   "license": "GPL-3.0",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "@cosmjs/encoding": "^0.31.0",
     "dotenv": "^16.3.1",
