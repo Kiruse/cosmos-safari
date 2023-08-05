@@ -13,7 +13,7 @@ export async function getPropsTask() {
     // initialize
     if (!(address in lastPropIds)) {
       const data = (await doc.get()).data();
-      lastPropIds[address] = parseInt(data?.lastPropIds ?? 0);
+      lastPropIds[address] = parseInt(data?.lastPropId ?? 0);
     }
 
     const newPropCount = props.length - lastPropIds[address];
@@ -35,9 +35,8 @@ export async function getPropsTask() {
       default: logSubmsg = `${newPropCount} new proposals`; break;
     }
 
-    await doc.set({
-      lastPropIds: props[props.length - 1].id,
-    }, { merge: true });
+    const lastPropId = lastPropIds[address] = props[props.length - 1].id;
+    await doc.set({ lastPropId }, { merge: true });
 
     console.log(`[${timestamp()}] ${dao} has ${logSubmsg} (total ${props.length})`);
   }));
